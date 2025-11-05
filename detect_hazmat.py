@@ -10,7 +10,7 @@ torch.set_default_device(torch.device("mps"))
 
 # Load class names from Hazmat_Individual subfolders
 import os
-DATA_PATH = "Hazmat_Individual"
+DATA_PATH = "../hazmatstuff/Hazmat_Individual"
 class_names = sorted([d for d in os.listdir(DATA_PATH) if os.path.isdir
 (os.path.join(DATA_PATH, d))])
 
@@ -25,7 +25,7 @@ model = torch.nn.Sequential(collections.OrderedDict([
     ('final', torch.nn.Linear(in_features=2048, out_features=len(class_names))),
     ('softmax', torch.nn.Softmax(dim=1)),
 ]))
-model.load_state_dict(torch.load("hazmat_weights_individual.pth", 
+model.load_state_dict(torch.load("../hazmatstuff/hazmat_weights_individual.pth", 
 map_location="mps"))
 model.eval()
 
